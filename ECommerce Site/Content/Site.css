@@ -48,7 +48,7 @@ h6 {
     margin: 10px;
     flex-wrap: nowrap;
     flex-direction: row;
-    width: 10px;
+    width: 25%;
 }
 
 .product-img-container {
@@ -145,4 +145,19 @@ footer > p {
 
 .summary {
     margin: 30px 0 15px 0;
+}
+.message {
+    padding: 40px;
+}
+
+.heading {
+    margin-bottom: 20px;
+}
+
+.subheading {
+    margin-left: 40px;
+}
+
+.title {
+    padding: 30px;
 }
