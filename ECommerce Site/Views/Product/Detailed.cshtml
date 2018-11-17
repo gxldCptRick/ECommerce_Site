@@ -1,0 +1,60 @@
+﻿@model ECommerceSite.DAL.Models.Product
+
+@{
+    ViewBag.Title = "Detailed";
+}
+
+<h2>Detailed</h2>
+
+<div class="product-display">
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+
+        <dd>
+            <img src="@Model.ImageUrl" />
+        </dd>
+
+        <dt class="summary">
+            @Html.DisplayNameFor(model => model.Summary)
+        </dt>
+
+        <dd class="summary">
+            @Html.DisplayFor(model => model.Summary)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+        <dd>
+            <ul>
+                @foreach (var detail in Model.Details)
+                {
+                    <li>@detail</li>
+                }
+            </ul>
+        </dd>
+    </dl>
+    <p>
+        @Html.ActionLink("Edit", "Update", new { id = Model.Id }, new { @class = "product-delete" }) |
+        @Html.ActionLink("Back to Catalog", "Catalog", "Product")
+    </p>
+</div>

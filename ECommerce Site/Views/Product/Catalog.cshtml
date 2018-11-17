@@ -1,0 +1,13 @@
+﻿@model ECommerce_Site.Models.ProductList
+
+@{
+    ViewBag.Title = "Catalog";
+}
+
+<h2>Catalog</h2>
+    <div class="products flex">
+@foreach (var product in Model.Products)
+{
+    Html.RenderPartial("ProductDisplay", product);
+}
+    </div>

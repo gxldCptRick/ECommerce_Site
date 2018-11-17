@@ -1,0 +1,148 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+*, a {
+    color: #B2A778;
+    font-family: 'Merriweather', serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #FFF4C6;
+    font-family: 'Bitter', serif;
+}
+
+.flex {
+    display: flex;
+}
+
+.product-model {
+    flex-grow: 1;
+    margin: 10px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: 10px;
+}
+
+.product-img-container {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.product-img {
+    width: 100%;
+    height: auto;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.products{
+    flex-wrap: wrap;
+}
+
+.product-display {
+    background: #7274B2;
+    padding: 20px;
+    border-radius: 5px;
+}
+.product-details {
+    width: 100%;
+    flex-grow: 2;
+    background: #7274B2;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+}
+
+.product-detail {
+    margin-bottom: 15px;
+}
+.purple {
+    background: #7274B2;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.offset {
+    margin-top: 10px;
+}
+
+.product-delete {
+    background: #d2d4ff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #B2A778;
+}
+
+    .product-delete:hover {
+        background: red;
+    }
+
+.navbar-inverse {
+    background: #d2d4ff;
+    border: none;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+    color: #B2A778;
+}
+
+    .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-nav > li > a:hover {
+        color: #FFF9DF;
+    }
+
+.jumbotron {
+    margin-top: 10px;
+    background: #7274B2;
+}
+body {
+    background: #B2A778;
+}
+
+footer > p {
+    color: #7274B2;
+}
+
+#added-detail-container {
+    flex-direction: column;
+}
+
+.detail-added {
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.summary {
+    margin: 30px 0 15px 0;
+}
