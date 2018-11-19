@@ -25,7 +25,11 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-item" })</li>
                     <li>@Html.ActionLink("Catalog", "Catalog", "Product", null, new { @class = "nav-item" })</li>
-                    <li>@Html.ActionLink("List Product", "Create", "Product", null, new { @class = "nav-item" })</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("List Product", "Create", "Product", null, new { @class = "nav-item" })</li>
+                        <li>@Html.ActionLink("Manage Users", "Index", "User", null, new { @class = "nav-item" })</li>
+                    }
                     <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-item" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-item" })</li>
                 </ul>

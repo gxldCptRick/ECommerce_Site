@@ -37,6 +37,7 @@ namespace ECommerce_Site.Controllers
             return ProccessId("Detailed", id);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.IsCreate = true;
@@ -44,7 +45,9 @@ namespace ECommerce_Site.Controllers
             return View("ProductEditor");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Product product, string details)
         {
             var result = default(ActionResult);
@@ -56,6 +59,7 @@ namespace ECommerce_Site.Controllers
             return result;
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int? id)
         {
             ViewBag.IsCreate = false;
@@ -63,7 +67,9 @@ namespace ECommerce_Site.Controllers
             return ProccessId("ProductEditor", id);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(Product product, string details)
         {
             var result = default(ActionResult);
@@ -84,12 +90,15 @@ namespace ECommerce_Site.Controllers
             return result;
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             return ProccessId(nameof(Delete), id);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             _service.DeleteProduct(new Product { Id = id });

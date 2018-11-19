@@ -161,3 +161,7 @@ footer > p {
 .title {
     padding: 30px;
 }
+
+.user-container {
+    border: solid black 1px;
+}

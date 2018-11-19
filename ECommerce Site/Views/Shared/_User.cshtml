@@ -1,0 +1,17 @@
+﻿@model ECommerce_Site.Models.UserDisplay
+
+<div class="user-container purple">
+    <h2>@Model.UserName</h2>
+    <p> Current Role: @Model.Role</p>
+    <label for="role_@Model.UserName">New Role: </label>
+    <select name="role_@Model.Id">
+        <option value="@Model.Role">@Model.Role</option>
+        @using (var context = new ECommerce_Site.Models.ApplicationDbContext())
+        {
+            foreach (var role in context.Roles.Where(r => r.Name != Model.Role))
+            {
+                <option value="@role.Name">@role.Name</option>
+            }
+        }
+    </select>
+</div>

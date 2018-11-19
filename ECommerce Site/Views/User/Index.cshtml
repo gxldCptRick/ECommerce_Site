@@ -1,0 +1,35 @@
+﻿@model ECommerce_Site.Models.UserList
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Welcome @User.Identity.Name</h2>
+
+@if (ViewBag.IsAuth != null && ViewBag.IsAuth)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <h3>Manage Users</h3>
+        using (Html.BeginForm())
+        {
+            foreach (var user in Model.Users)
+            {
+                Html.RenderPartial("_User", user);
+            }
+            
+            <input type="submit" value="Save Changes" />
+        }
+    }
+    else
+    {
+        <div>
+            We are currently setting up what you may do so yeah... wait a minute god!!!
+        </div>
+    }
+}
+else
+{
+    <p>Please Authenticate to view this page.</p>
+}
+
+

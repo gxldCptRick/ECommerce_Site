@@ -54,7 +54,10 @@
         </dd>
     </dl>
     <p>
-        @Html.ActionLink("Edit", "Update", new { id = Model.Id }, new { @class = "product-delete" }) |
+        @if (User.IsInRole("Admin"))
+        {
+            Html.ActionLink("Edit", "Update", new { id = Model.Id }, new { @class = "product-delete" });
+        } |
         @Html.ActionLink("Back to Catalog", "Catalog", "Product")
     </p>
 </div>
