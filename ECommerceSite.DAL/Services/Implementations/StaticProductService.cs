@@ -9,14 +9,14 @@ namespace ECommerceSite.DAL.Services.Implementations
 {
     public class StaticProductService : IProductService
     {
-        private static IList<Product> Products { get; set; }
+        private static IList<Models.Product> Products { get; set; }
 
         static StaticProductService()
         {
-            Products = new List<Product>();
+            Products = new List<Models.Product>();
             for (int i = 0; i < 10; i++)
             {
-                var product = new Product
+                var product = new Models.Product
                 {
                     Name = "Testing",
                     Cost = 100.00m,
@@ -34,24 +34,24 @@ namespace ECommerceSite.DAL.Services.Implementations
             }
         }
 
-        public Product CreateProduct(Product product)
+        public Models.Product CreateProduct(Models.Product product)
         {
             return product;
         }
 
-        public void DeleteProduct(Product product)
+        public void DeleteProduct(Models.Product product)
         {
             //do nothing
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Models.Product> GetAllProducts()
         {
             return Products;
         }
 
-        public Product GetProductById(int id)
+        public Models.Product GetProductById(int id)
         {
-            var product = default(Product);
+            var product = default(Models.Product);
             if (id >= 0 &&  id < Products.Count)
             {
                 product = Products[id];
@@ -60,7 +60,7 @@ namespace ECommerceSite.DAL.Services.Implementations
             return product;
         }
 
-        public void UpdateProduct(Product product)
+        public void UpdateProduct(Models.Product product)
         {
             var productInList = GetProductById(product.Id);
             if (productInList != null)

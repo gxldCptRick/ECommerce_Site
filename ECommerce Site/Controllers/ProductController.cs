@@ -9,17 +9,19 @@ using System.Web.Mvc;
 
 namespace ECommerce_Site.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IProductService _service;
 
         public ProductController() : this(new SqlProductService())
         { }
+
         public ProductController(IProductService service)
         {
             _service = service;
         }
-
+        [AllowAnonymous]
         public ActionResult Catalog()
         {
             var allDaProducts = _service.GetAllProducts();
@@ -31,7 +33,7 @@ namespace ECommerce_Site.Controllers
 
             return View(listView);
         }
-
+        [AllowAnonymous]
         public ActionResult Detailed(int? id)
         {
             return ProccessId("Detailed", id);

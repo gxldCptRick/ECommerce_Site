@@ -12,12 +12,14 @@ namespace ECommerceSite.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductDetail
+    public partial class CartHistory
     {
-        public int ProductDetailId { get; set; }
-        public int ProductId { get; set; }
-        public string DetailText { get; set; }
+        public int Id { get; set; }
+        public int CartId { get; set; }
+        public System.DateTime DateSubmited { get; set; }
+        public string UserId { get; set; }
     
-        public virtual Product Product { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual Cart Cart { get; set; }
     }
 }

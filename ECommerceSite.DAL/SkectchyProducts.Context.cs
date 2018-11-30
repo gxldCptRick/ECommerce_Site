@@ -7,19 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ECommerceSite.DAL.Entities
+namespace ECommerceSite.DAL
 {
-    using ECommerceSite.DAL.Entities.Models;
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class SketchyProductsEntities : DbContext
     {
         public SketchyProductsEntities()
             : base("name=SketchyProductsEntities")
         {
         }
-
+    
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
+    
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<CartDetail> CartDetails { get; set; }
+        public virtual DbSet<CartHistory> CartHistories { get; set; }
         public virtual DbSet<ProductDetail> ProductDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
     }

@@ -21,7 +21,7 @@ namespace ECommerce_Site.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("SketchyProductsEntities1", throwIfV1Schema: false)
         {
         }
 

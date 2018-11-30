@@ -1,0 +1,15 @@
+﻿@model ECommerceSite.DAL.Models.CartDTO
+
+<h1> Hello @User.Identity.Name </h1>
+
+<ul>
+    @foreach (var item in Model.Cart)
+    {
+        <li> @item.Key: @item.Value</li>
+    }
+</ul>
+
+<form>
+    <input type="hidden" value="@Model.UserId" name="id" />
+    <input type="submit" value="Checkout" />
+</form>

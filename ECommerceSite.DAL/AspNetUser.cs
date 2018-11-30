@@ -12,24 +12,31 @@ namespace ECommerceSite.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class AspNetUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public AspNetUser()
         {
-            this.CartDetails = new HashSet<CartDetail>();
-            this.ProductDetails = new HashSet<ProductDetail>();
+            this.Carts = new HashSet<Cart>();
+            this.CartHistories = new HashSet<CartHistory>();
         }
     
-        public int ProductId { get; set; }
-        public string Name { get; set; }
-        public decimal Cost { get; set; }
-        public string ImageUrl { get; set; }
-        public string Summary { get; set; }
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public string PasswordHash { get; set; }
+        public string SecurityStamp { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool PhoneNumberConfirmed { get; set; }
+        public bool TwoFactorEnabled { get; set; }
+        public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
+        public bool LockoutEnabled { get; set; }
+        public int AccessFailedCount { get; set; }
+        public string UserName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CartDetail> CartDetails { get; set; }
+        public virtual ICollection<Cart> Carts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
+        public virtual ICollection<CartHistory> CartHistories { get; set; }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using ECommerceSite.DAL.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,10 +11,10 @@ namespace ECommerceSite.DAL.Services.Implementations
         {
             Mapper.Initialize(config =>
             {
-                config.CreateMap<Models.Product, Entities.Models.Product>()
+                config.CreateMap<Models.Product, Product>()
                 .ForMember(d => d.ProductId, ops => ops.MapFrom(s => s.Id))
                 .ForMember(d => d.ProductDetails, ops => ops.Ignore());
-                config.CreateMap<Entities.Models.Product, Models.Product>()
+                config.CreateMap<Product, Models.Product>()
                 .ForMember(d => d.Id, ops => ops.MapFrom(s => s.ProductId))
                 .ForMember(d => d.Details, ops => ops.Ignore());
             });
@@ -24,13 +22,13 @@ namespace ECommerceSite.DAL.Services.Implementations
 
         public Models.Product CreateProduct(Models.Product product)
         {
-            Models.Product newestProduct = product;
+            var newestProduct = product;
             using (var context = new SketchyProductsEntities())
             {
-                var productToAdd = Mapper.Map<Entities.Models.Product>(product);
+                var productToAdd = Mapper.Map<Product>(product);
                 var productAdded = context.Products.Add(productToAdd);
                 context.SaveChanges();
-                newestProduct= Mapper.Map<Models.Product>(productAdded);
+                newestProduct = Mapper.Map<Models.Product>(productAdded);
             }
 
             foreach (var detail in product.Details)
@@ -44,7 +42,7 @@ namespace ECommerceSite.DAL.Services.Implementations
         {
             using (var context = new SketchyProductsEntities())
             {
-                var productDetail = new Entities.Models.ProductDetail
+                var productDetail = new ProductDetail
                 {
                     ProductId = id,
                     DetailText = detail
@@ -85,7 +83,7 @@ namespace ECommerceSite.DAL.Services.Implementations
             using (var context = new SketchyProductsEntities())
             {
                 var productDb = context.Products.SingleOrDefault(p => p.ProductId == id);
-                var product =  Mapper.Map<Models.Product>(productDb);
+                var product = Mapper.Map<Models.Product>(productDb);
                 foreach (var detail in productDb.ProductDetails)
                 {
                     product.Details.Add(detail.DetailText);
@@ -99,7 +97,7 @@ namespace ECommerceSite.DAL.Services.Implementations
             using (var context = new SketchyProductsEntities())
             {
                 var productDb = context.Products.SingleOrDefault(p => p.ProductId == product.Id);
-                if(productDb != null)
+                if (productDb != null)
                 {
                     productDb.Cost = product.Cost;
                     productDb.ImageUrl = product.ImageUrl;

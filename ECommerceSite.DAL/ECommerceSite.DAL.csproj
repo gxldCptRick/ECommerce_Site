@@ -56,31 +56,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>SkectchyProducts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cart.cs">
+      <DependentUpon>SkectchyProducts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CartDetail.cs">
+      <DependentUpon>SkectchyProducts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CartHistory.cs">
+      <DependentUpon>SkectchyProducts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CartDTO.cs" />
     <Compile Include="Product.cs">
-      <DependentUpon>SketchyProducts.tt</DependentUpon>
+      <DependentUpon>SkectchyProducts.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductDetail.cs">
-      <DependentUpon>SketchyProducts.tt</DependentUpon>
+      <DependentUpon>SkectchyProducts.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ICartService.cs" />
+    <Compile Include="Services\Implementations\SqlCartService.cs" />
     <Compile Include="Services\Implementations\StaticProductService.cs" />
     <Compile Include="Services\Implementations\SqlProductService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="SketchyProducts.Context.cs">
+    <Compile Include="SkectchyProducts.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SketchyProducts.Context.tt</DependentUpon>
+      <DependentUpon>SkectchyProducts.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SketchyProducts.cs">
+    <Compile Include="SkectchyProducts.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SketchyProducts.tt</DependentUpon>
+      <DependentUpon>SkectchyProducts.tt</DependentUpon>
     </Compile>
-    <Compile Include="SketchyProducts.Designer.cs">
+    <Compile Include="SkectchyProducts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SketchyProducts.edmx</DependentUpon>
+      <DependentUpon>SkectchyProducts.edmx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -89,27 +104,27 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="SketchyProducts.edmx">
+    <EntityDeploy Include="SkectchyProducts.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SketchyProducts.Designer.cs</LastGenOutput>
+      <LastGenOutput>SkectchyProducts.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="SketchyProducts.edmx.diagram">
-      <DependentUpon>SketchyProducts.edmx</DependentUpon>
+    <None Include="SkectchyProducts.edmx.diagram">
+      <DependentUpon>SkectchyProducts.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SketchyProducts.Context.tt">
+    <Content Include="SkectchyProducts.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SketchyProducts.edmx</DependentUpon>
-      <LastGenOutput>SketchyProducts.Context.cs</LastGenOutput>
+      <DependentUpon>SkectchyProducts.edmx</DependentUpon>
+      <LastGenOutput>SkectchyProducts.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SketchyProducts.tt">
+    <Content Include="SkectchyProducts.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SketchyProducts.edmx</DependentUpon>
-      <LastGenOutput>SketchyProducts.cs</LastGenOutput>
+      <DependentUpon>SkectchyProducts.edmx</DependentUpon>
+      <LastGenOutput>SkectchyProducts.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

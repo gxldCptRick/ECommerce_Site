@@ -12,24 +12,22 @@ namespace ECommerceSite.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class Cart
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public Cart()
         {
             this.CartDetails = new HashSet<CartDetail>();
-            this.ProductDetails = new HashSet<ProductDetail>();
+            this.CartHistories = new HashSet<CartHistory>();
         }
     
-        public int ProductId { get; set; }
-        public string Name { get; set; }
-        public decimal Cost { get; set; }
-        public string ImageUrl { get; set; }
-        public string Summary { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CartDetail> CartDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
+        public virtual ICollection<CartHistory> CartHistories { get; set; }
     }
 }
