@@ -33,6 +33,23 @@ namespace ECommerce_Site.Controllers
 
             return View(listView);
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Catalog(string searchTerm)
+        {
+             searchTerm = searchTerm.Trim();
+            var allDaProducts = _service.GetAllProducts().ToList();
+
+            var listView = new ProductList
+            {
+                SearchTerm = searchTerm,
+                Products = allDaProducts.Where(p => p.Name.ToUpper().Contains(searchTerm.ToUpper())).ToList()
+            };
+
+            return View(listView);
+        }
+
         [AllowAnonymous]
         public ActionResult Detailed(int? id)
         {
@@ -47,8 +64,8 @@ namespace ECommerce_Site.Controllers
             return View("ProductEditor");
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Product product, string details)
         {

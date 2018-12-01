@@ -69,6 +69,7 @@
       <DependentUpon>SkectchyProducts.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CartDTO.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>SkectchyProducts.tt</DependentUpon>
     </Compile>

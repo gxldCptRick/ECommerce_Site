@@ -2,14 +2,44 @@
 
 <h1> Hello @User.Identity.Name </h1>
 
-<ul>
-    @foreach (var item in Model.Cart)
+<div class="purple cart">
+    <h2>Current Cart</h2>
+    @if (Model.Cart.Count != 0)
     {
-        <li> @item.Key: @item.Value</li>
-    }
-</ul>
 
-<form>
+        <ul class="cart-item-list">
+            @foreach (var item in Model.Cart)
+            {
+                <li class="cart-item flex">
+                    @item.ProductName:
+
+                    @using (Html.BeginForm("UpdateItem", "Cart", new { id = item.ProductId }, FormMethod.Post, new { @class = "flex column"}))
+                    {
+                        <input  type="number" min="0" value="@item.Amount" name="amount"/>
+                        <input type="submit" value="Update"/>
+                    }
+
+                    @using (Html.BeginForm("DeleteItem", "Cart", new { id = item.ProductId }, FormMethod.Post, new { }))
+                    {
+                        <input type="submit" value="Remove" />
+                    }
+                </li>
+            }
+        </ul>
+        <p> Total: @string.Format("{0:C}", Model.Total)</p>
+    }
+    else
+    {
+        if (ViewBag.Error != null)
+        {
+            <p class="text-danger">@ViewBag.Error</p>
+        }
+        <p> Your Cart Is Empty </p>
+    }
+</div>
+
+@using (Html.BeginForm("PurchaseScreen", "Cart", FormMethod.Post))
+{
     <input type="hidden" value="@Model.UserId" name="id" />
     <input type="submit" value="Checkout" />
-</form>
+}

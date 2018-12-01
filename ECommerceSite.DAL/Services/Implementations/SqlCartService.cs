@@ -15,7 +15,7 @@ namespace ECommerceSite.DAL.Services.Implementations
         private Cart GetNewestCartForUser(SketchyProductsEntities context, string userId)
         {
             var cartHistory = context.CartHistories.Where(c => c.UserId == userId).Select(c => c.CartId).ToList();
-            var currentCart = context.Carts.FirstOrDefault(c => !cartHistory.Contains(c.Id));
+            var currentCart = context.Carts.FirstOrDefault(c => !cartHistory.Contains(c.Id) && c.UserId == userId);
             return currentCart;
 
         }
@@ -58,7 +58,7 @@ namespace ECommerceSite.DAL.Services.Implementations
                 {
                     var item = new CartDetail()
                     {
-                        Quantity = 1,
+                        Quantity = amount,
                         CartId = cartId,
                         ProductId = productId,
                     };
@@ -78,11 +78,12 @@ namespace ECommerceSite.DAL.Services.Implementations
             using (var context = GenerateContext())
             {
                 var currentCart = GetNewestCartForUser(context, userId);
-                if(currentCart is null) throw new ArgumentException("The user must have cart in order to update an item in the cart.");
+                if (currentCart is null) throw new ArgumentException("The user must have cart in order to update an item in the cart.");
                 var productLine = context.CartDetails.Single(c => c.ProductId == productId && c.CartId == currentCart.Id);
-                productLine.Quantity = amountSetting;
+                if (amountSetting == 0) context.CartDetails.Remove(productLine);
+                else productLine.Quantity = amountSetting;
                 context.SaveChanges();
-               
+
             }
         }
 
@@ -114,10 +115,28 @@ namespace ECommerceSite.DAL.Services.Implementations
                 foreach (var item in context.CartDetails.Where(cd => cd.CartId == cartId).ToList())
                 {
                     var product = context.Products.Single(p => p.ProductId == item.ProductId);
-                    cart.Cart[product.Name] = item.Quantity;
+                    var itemData = new CartItem
+                    {
+                        Amount = item.Quantity,
+                        ProductName = product.Name,
+                        ProductId = product.ProductId
+                    };
+                    cart.Cart.Add(itemData);
+                    cart.Total += product.Cost * item.Quantity;
                 }
             }
             return cart;
+        }
+
+        public void RemoveItemFromCart(string userId, int productId)
+        {
+            using (var context = GenerateContext())
+            {
+                var cart = GetNewestCartForUser(context, userId);
+                var product = context.CartDetails.SingleOrDefault(d => d.CartId == cart.Id && d.ProductId == productId);
+                context.CartDetails.Remove(product);
+                context.SaveChanges();
+            }
         }
     }
 }

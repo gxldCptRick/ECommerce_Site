@@ -5,9 +5,24 @@
 }
 
 <h2>Catalog</h2>
-    <div class="products flex">
-@foreach (var product in Model.Products)
+
+@if (Model.SearchTerm != null)
 {
-    Html.RenderPartial("ProductDisplay", product);
+    <h3>Results For: @Model.SearchTerm</h3>
 }
+
+@if (Model.Products.Count != 0)
+{
+    <div class="products flex">
+        @foreach (var product in Model.Products)
+        {
+            Html.RenderPartial("ProductDisplay", product);
+        }
     </div>
+}
+else
+{
+    <div class="purple">
+        <p>Sorry we couldn't find any products for you by that name.</p>
+    </div>
+}

@@ -11,13 +11,20 @@
     <div class="product-details">
         <a class="flex-column product-detail" href="@ViewBag.DetailLink">
             <h2>@Model.Name</h2>
-            <h3>@string.Format("${0:#.00}", Model.Cost)</h3>
+            <h3>@string.Format("{0:C}", Model.Cost)</h3>
         </a>
         @if (User.IsInRole("Admin"))
         {
             <a href="/Product/Delete/@Model.Id" class="product-delete">
                 Delete
             </a>
+        }
+
+        @using (Html.BeginForm("ConfirmScreen", "Cart", new { productId = Model.Id }, FormMethod.Get,  new { @class = "flex add-control" }))
+        {
+            <input type="hidden" value="@Model.Id" name="productId"/>
+            <input type="number" class="add-input" min="1" value="1" name="amount"/>
+            <input type="submit" class="btn-add" value="Add To Cart"/>
         }
     </div>
 </div>

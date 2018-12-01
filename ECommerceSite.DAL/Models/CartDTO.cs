@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ECommerceSite.DAL.Models
 {
@@ -7,17 +8,19 @@ namespace ECommerceSite.DAL.Models
         //cart to store all the data for the current info
         //the key is the product id and 
         //the value is the amount for that specific product
-        private Dictionary<string, int> _cart;
-        public Dictionary<string, int> Cart
+        private List<CartItem> _cart;
+        public List<CartItem> Cart
         {
             get => _cart;
             private set => _cart = value;
         }
+
+        public decimal Total { get; set; }
         public string UserId { get; set; }
 
         public CartDTO()
         {
-            Cart = new Dictionary<string, int>();
+            Cart = new List<CartItem>();
         }
 
 

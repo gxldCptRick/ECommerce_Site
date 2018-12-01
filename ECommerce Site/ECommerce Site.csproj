@@ -291,6 +291,8 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\_User.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\ConfirmScreen.cshtml" />
+    <Content Include="Views\Cart\PurchaseScreen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

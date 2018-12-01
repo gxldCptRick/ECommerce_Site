@@ -25,7 +25,47 @@ namespace ECommerce_Site.Controllers
         {
             var id = GetIdForCurrentUser();
             var Cart = _cartService.GetCartForUser(id);
+            ViewBag.Error = this.Request.QueryString["Error"];
             return View(Cart);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteItem(int id)
+        {
+            var userId = GetIdForCurrentUser();
+            _cartService.RemoveItemFromCart(userId, id);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateItem(int id, int amount)
+        {
+            var userId = GetIdForCurrentUser();
+            _cartService.UpdateItemInCart(userId, id, amount);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult PurchaseScreen(string id)
+        {
+            var originalCart = _cartService.GetCartForUser(id);
+            if (originalCart.Cart.Count != 0)
+            {
+                _cartService.CheckoutCart(id);
+                return View(originalCart);
+            }
+            else
+            {
+                return RedirectToAction("Index", new { Error = "Cart Must Have Items To Checkout" });
+            }
+        }
+
+        public ActionResult ConfirmScreen(int productId, int amount)
+        {
+            var id = GetIdForCurrentUser();
+            _cartService.AddSpecificAmountOfItemsToCart(id, productId, amount);
+            var detail = _cartService.GetCartForUser(id).Cart.First(i => i.ProductId == productId);
+            return View(detail);
         }
 
         private string GetIdForCurrentUser()
