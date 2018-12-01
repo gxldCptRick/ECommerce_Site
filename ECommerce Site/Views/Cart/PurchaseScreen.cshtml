@@ -1,0 +1,14 @@
+﻿@model ECommerceSite.DAL.Models.CartDTO
+@{
+    ViewBag.Title = "PurchaseScreen";
+}
+
+<h2>Purchased</h2>
+
+<div class="purple">
+    <p>Your order was succefully sent and you will be getting your items eventually maybe.</p>
+    <h5>YOU WILL NEVER GET YOUR STUFF SO STOP ASKING</h5>
+    <h6>YOU JUST LOST @string.Format("{0:c}", Model.Total)</h6>
+</div>
+
+

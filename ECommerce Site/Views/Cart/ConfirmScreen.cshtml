@@ -1,0 +1,14 @@
+﻿@model ECommerceSite.DAL.Models.CartItem
+@{
+    ViewBag.Title = "ConfirmScreen";
+}
+
+<h2>ConfirmScreen</h2>
+
+<div class="purple">
+    <p> @Model.Amount @Model.ProductName are now in your cart.</p>
+    @Html.ActionLink("Continue Shopping", "Catalog", "Product", new { }, new { @class = "btn" })
+    @Html.ActionLink("Checkout", "Index", "Cart", new { }, new { @class = "btn" })
+</div>
+
+
